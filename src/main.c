@@ -1,7 +1,7 @@
-#include "Philosophers.h"
+#include "../Philosophers.h"
 
-int is_number(char *tab) //!check si c'est autre chose qu'un nombre
-{
+int is_number(char *tab)
+{ //!check si c'est autre chose qu'un nombre
     int i;
 
     i = 0;
@@ -17,38 +17,45 @@ int is_number(char *tab) //!check si c'est autre chose qu'un nombre
     return (0);
 }
 
-int input_checker(int argc, char **argv) //!teste si on a bien juste des nombres positifs et corrects
+int input_checker_2(char **argv, int i)
 {
-    int i;
+    if((ft_atoi(argv[1]) > PHIL_MAX) || ft_atoi(argv[1]) <= 0)
+    {
+        printf("There can only be 1 to 200 philosophers\n");
+        return (-1);
+    }
+    if ((argv[5] != NULL && ft_atoi(argv[5]) <= 0) || ( i < 5 && ft_atoi(argv[i]) < 0))
+    {
+        if(argv[5] != NULL && ft_atoi(argv[5]) < 0)
+        {
+            printf("Argument value can't be less than 0\n");
+            return (-1);
+        }
+        else if(argv[5] != NULL && ft_atoi(argv[5]) == 0)
+        {
+            printf("Philosophers aren't able to do their routine because they're not allowed to eat any meal.\n");
+            return (-1);
+        }
+        else 
+        {
+            printf("Argument value can't be less than 0 or more than 2147483647\n");
+            return (-1);
+        }
+    }
+    return (0);
+}
+
+int input_checker(int argc, char **argv)
+{
+    int i; //!teste si on a bien juste des nombres positifs et corrects
 
     i = 1;
     while(argv[i] && i < argc && argc >= 5 && argc <= 6)
     {
         if (is_number(argv[i]) == -1)
             return (-1);
-        if((ft_atoi(argv[1]) > PHIL_MAX) || ft_atoi(argv[1]) <= 0)
-        {
-            printf("There can only be 1 to 200 philosophers\n");
+        if (input_checker_2(argv, i) == -1)
             return (-1);
-        }
-        if ((argv[5] != NULL && ft_atoi(argv[5]) <= 0) || ( i < 5 && ft_atoi(argv[i]) < 0))
-        {
-            if(argv[5] != NULL && ft_atoi(argv[5]) < 0)
-            {
-                printf("Argument value can't be less than 0\n");
-                return (-1);
-            }
-            else if(argv[5] != NULL && ft_atoi(argv[5]) == 0)
-            {
-                printf("Philosophers aren't able to do their routine because they're not allowed to eat any meal.\n");
-                return (-1);
-            }
-            else 
-            {
-                printf("Argument value can't less than 0 or more than 2147483647\n");
-                return (-1);
-            }
-        }
         if( i < 5 && ft_atoi(argv[2]) == 0)
         {
             printf("0 1 died\n");
@@ -61,7 +68,7 @@ int input_checker(int argc, char **argv) //!teste si on a bien juste des nombres
         printf("You should enter the number of philosphers, the time to die, the time to eat, time to sleep and the number of loop.\n");
         return (-1);
     }
-    return (0);
+    return (i);
 }
 
 int main(int argc, char **argv)
@@ -80,4 +87,4 @@ int main(int argc, char **argv)
     create_threads(&data);
     clean_mutex(&data, chopsticks);
     return (0);
-} 
+}

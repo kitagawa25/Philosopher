@@ -1,4 +1,4 @@
-#include "Philosophers.h"
+#include "../Philosophers.h"
 
 void clean_mutex(t_data *data, pthread_mutex_t *chopsticks)
 {

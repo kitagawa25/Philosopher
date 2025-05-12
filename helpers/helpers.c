@@ -1,14 +1,4 @@
-#include "Philosophers.h"
-
-int    ft_usleep(size_t milliseconds)
-{
-    size_t    start;
-
-    start = get_time();
-    while ((get_time() - start) < milliseconds)
-        usleep(500);
-    return (0);
-}
+#include "../Philosophers.h"
 
 int        ft_atoi(const char *str)
 {
@@ -36,8 +26,8 @@ int        ft_atoi(const char *str)
     return (res * sign);
 }
 
-long int    get_time(void) //!gets the actual time
-{
+long int    get_time(void)
+{ //!gets the actual time
     struct timeval        actual_time; //structure qui contient tv_sec et tv_usec (temps en seconde et millisecondes)
     long int            time; //variable qui stock le temps
 
