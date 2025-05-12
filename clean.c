@@ -1,4 +1,4 @@
-#include "../Philosophers.h"
+#include "Philosophers.h"
 
 void clean_mutex(t_data *data, pthread_mutex_t *chopsticks)
 {
@@ -14,10 +14,4 @@ void clean_mutex(t_data *data, pthread_mutex_t *chopsticks)
         i++;
     }
     return ;
-}
-
-int	ft_error(void)
-{
-	ft_putstr_fd("An error has occured\n", 2);
-	return (0);
 }
