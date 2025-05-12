@@ -12,9 +12,9 @@
 
 # define PHIL_MAX 200
 
-struct    s_data; //this line is to define the structure before actually saying what's inside it
+struct    s_data; //definir la structure avant de dire ce qu'elle contient
 
-typedef struct s_philo //personnal data of each philosopher
+typedef struct s_philo //personnal data de chaque philo
 {
 	pthread_t       t1; //une partie du processus en action
 	int             id;
